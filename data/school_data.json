@@ -1,0 +1,163 @@
+{
+  "update_time": "2026-07-08",
+
+  "黄冈师范学院": {
+    "name": "黄冈师范学院",
+    "city": "湖北省 黄冈市",
+    "type": "公办本科",
+    "master": "硕士点",
+
+    "difficulty": {
+  "level": "⭐⭐⭐",
+  "title": "难度适中",
+  "analysis": "学校属于公办本科院校，竞争压力相对武汉地区高校较小。",
+  "suggestion": "适合作为稳妥上岸目标。"
+},
+    "website": "https://www.hgnu.edu.cn",
+    "graduate_site": "https://yjs.hgnu.edu.cn",
+
+    "notice": {
+      "title": "2026年硕士研究生招生简章",
+      "publish": "2025-09-20",
+      "exam": "2025-12-20"
+    },
+
+    "majors": [
+      {
+        "name": "国际商务",
+        "code": "025400",
+        "tuition": "12000元/年",
+        "study": "全日制",
+        "years": 2,
+
+        "history": [
+          {
+            "year": "2024",
+            "plan": 16,
+            "line": 337
+          },
+          {
+            "year": "2025",
+            "plan": 18,
+            "line": 340
+          },
+          {
+            "year": "2026",
+            "plan": 15,
+            "line": 342
+          }
+        ],
+
+        "subjects": [
+          "101 思想政治理论",
+          "204 英语（二）",
+          "396 经济类综合能力",
+          "434 国际商务专业基础"
+        ]
+      }
+    ]
+  },
+
+
+  "湖北大学": {
+    "name": "湖北大学",
+    "city": "湖北省 武汉市",
+    "type": "公办本科",
+    "master": "博士、硕士点",
+
+    "difficulty": {
+  "level": "⭐⭐⭐⭐",
+  "title": "竞争较强",
+  "analysis": "湖北大学属于省属重点高校，位于武汉地区，国际商务专业报考热度较高。",
+  "suggestion": "适合基础较好，希望冲击武汉地区高校的考生。"
+},
+    "website": "https://www.hubu.edu.cn",
+    "graduate_site": "https://gs.hubu.edu.cn",
+
+    "notice": {
+      "title": "2026年硕士研究生招生简章",
+      "publish": "2025-09-18",
+      "exam": "2025-12-20"
+    },
+
+    "majors": [
+      {
+        "name": "国际商务",
+        "code": "025400",
+
+        "study": "全日制",
+        "years": 2,
+        "tuition": "18000元/年",
+
+        "history": [
+          {
+            "year": "2024",
+            "plan": 28,
+            "line": 350
+          },
+          {
+            "year": "2025",
+            "plan": 30,
+            "line": 355
+          },
+          {
+            "year": "2026",
+            "plan": 30,
+            "line": 360
+          }
+        ],
+
+        "subjects": [
+          "101 思想政治理论",
+          "204 英语（二）",
+          "396 经济类综合能力",
+          "434 国际商务专业基础"
+        ]
+      }
+    ]
+  },
+
+
+  "武汉理工大学": {
+    "name": "武汉理工大学",
+    "city": "湖北省 武汉市",
+    "type": "211",
+    "master": "博士、硕士点",
+
+    "difficulty": {
+  "level": "⭐⭐⭐⭐⭐",
+  "title": "竞争较高",
+  "analysis": "武汉理工大学属于211高校，学校认可度较高，报考人数较多。",
+  "suggestion": "适合学习基础扎实，有较强竞争力的考生。"
+},
+    "website": "https://www.whut.edu.cn",
+    "graduate_site": "https://gd.whut.edu.cn",
+
+    "notice": {
+      "title": "2026年硕士研究生招生简章",
+      "publish": "2025-09-16",
+      "exam": "2025-12-20"
+    },
+
+    "majors": [
+      {
+        "name": "国际商务",
+        "code": "025400",
+
+        "plan": 45,
+        "tuimian": 5,
+
+        "study": "全日制",
+        "years": 2,
+        "tuition": "22000元/年",
+
+        "subjects": [
+          "101 思想政治理论",
+          "204 英语（二）",
+          "396 经济类综合能力",
+          "434 国际商务专业基础"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>考研情报站</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="top">
+
+
+<h1>🎓 考研情报站</h1>
+
+
+<p class="author">
+作者：漆有此理
+</p>
+
+
+<p>
+数据更新时间：
+{{ update_time }}
+</p>
+
+
+</div>
+
+
+
+<form class="search-box" action="/search" method="post">
+
+
+<input
+type="text"
+id="school"
+name="school"
+placeholder="请输入目标院校名称，例如：黄冈师范学院"
+autocomplete="off"
+required>
+
+
+<div id="suggestions"></div>
+
+
+<button type="submit">
+查询情报
+</button>
+
+
+</form>
+
+
+
+
+
+<div class="card">
+
+<h2>🏫 学校概况</h2>
+
+
+{% if info %}
+
+<button onclick="addFavorite('{{ info.name }}')">
+⭐ 收藏学校
+</button>
+
+
+<p>
+<strong>学校：</strong>
+{{ info.name }}
+</p>
+
+
+<p>
+<strong>城市：</strong>
+{{ info.city }}
+</p>
+
+
+<p>
+<strong>学校类型：</strong>
+{{ info.type }}
+</p>
+
+
+<p>
+<strong>办学层次：</strong>
+{{ info.master }}
+</p>
+
+
+
+<p>
+
+<strong>学校官网：</strong>
+
+<a href="{{ info.website }}" target="_blank">
+
+{{ info.website }}
+
+</a>
+
+</p>
+
+
+
+<p>
+
+<strong>研究生院：</strong>
+
+<a href="{{ info.graduate_site }}" target="_blank">
+
+{{ info.graduate_site }}
+
+</a>
+
+</p>
+
+
+
+{% else %}
+
+
+<p>
+请输入学校名称进行查询。
+</p>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>📢 最新招生通知</h2>
+
+
+
+{% if info %}
+
+
+
+<p>
+<strong>招生简章：</strong>
+{{ info.notice.title }}
+</p>
+
+
+
+<p>
+<strong>发布时间：</strong>
+{{ info.notice.publish }}
+</p>
+
+
+
+<p>
+<strong>初试时间：</strong>
+{{ info.notice.exam }}
+</p>
+
+
+
+{% else %}
+
+
+<p>
+请输入学校名称进行查询。
+</p>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>🎯 考研难度分析</h2>
+
+
+
+{% if info %}
+
+
+
+<p>
+
+<strong>综合难度：</strong>
+
+{{ info.difficulty.level }}
+
+</p>
+
+
+
+<p>
+
+<strong>评价：</strong>
+
+{{ info.difficulty.title }}
+
+</p>
+
+
+
+<p>
+
+<strong>分析：</strong>
+
+{{ info.difficulty.analysis }}
+
+</p>
+
+
+
+<p>
+
+<strong>建议：</strong>
+
+{{ info.difficulty.suggestion }}
+
+</p>
+
+
+
+{% else %}
+
+
+<p>
+请输入学校名称进行查询。
+</p>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+<div class="card">
+
+
+<h2>📚 招生专业信息</h2>
+
+
+
+{% if info %}
+
+
+
+{% for major in info.majors %}
+
+
+
+<div class="major-card">
+
+
+
+<h3>
+🎓 {{ major.name }}
+</h3>
+
+
+
+<p>
+
+<strong>专业代码：</strong>
+
+{{ major.code }}
+
+</p>
+
+
+
+<p>
+  <strong>招生人数：</strong>
+  {% if major.plan %}
+    {{ major.plan }} 人
+  {% elif major.history %}
+    {{ major.history[-1].plan }} 人（{{ major.history[-1].year }}年数据）
+  {% else %}
+    待更新
+  {% endif %}
+</p>
+
+<p>
+  <strong>推免人数：</strong>
+  {% if major.tuimian %}
+    {{ major.tuimian }} 人
+  {% else %}
+    待更新
+  {% endif %}
+</p>
+
+
+
+<p>
+
+<strong>学习方式：</strong>
+
+{{ major.study }}
+
+</p>
+
+
+
+<p>
+
+<strong>学制：</strong>
+
+{{ major.years }}
+
+年
+
+</p>
+
+
+
+<p>
+
+<strong>学费：</strong>
+
+{{ major.tuition }}
+
+</p>
+
+
+
+
+
+<h3>
+📝 初试考试科目
+</h3>
+
+
+
+<ul>
+
+
+{% for subject in major.subjects %}
+
+
+<li>
+{{ subject }}
+</li>
+
+
+{% endfor %}
+
+
+
+</ul>
+
+
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+
+{% else %}
+
+
+<p>
+请输入学校名称进行查询。
+</p>
+
+
+
+{% endif %}
+
+
+
+</div>
+
+
+<div class="card">
+
+<h2>⭐ 我的收藏</h2>
+
+<ul id="favoriteList">
+
+</ul>
+
+</div>
+<div class="card">
+
+
+<h2>🌐 官方链接</h2>
+
+
+
+{% if info %}
+
+
+
+<p>
+
+<strong>学校官网：</strong>
+
+
+<a href="{{ info.website }}" target="_blank">
+
+{{ info.website }}
+
+</a>
+
+
+</p>
+
+
+
+
+<p>
+
+<strong>研究生院：</strong>
+
+
+<a href="{{ info.graduate_site }}" target="_blank">
+
+{{ info.graduate_site }}
+
+</a>
+
+
+</p>
+
+
+
+{% else %}
+
+
+<p>
+请输入学校名称进行查询。
+</p>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+<div class="card">
+
+<h2>📌 数据说明</h2>
+
+<p>
+<strong>数据来源：</strong>
+各高校研究生院官网公开信息。
+</p>
+
+<p>
+<strong>更新时间：</strong>
+{{ update_time }}
+</p>
+
+<p>
+以上信息仅供考研参考，
+具体招生要求以学校官方通知为准。
+</p>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+
+
+</html>
