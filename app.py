@@ -109,6 +109,15 @@ def suggest():
 
 # 创建数据库测试
 
+@app.route("/init_db")
+def init_db():
+
+    db.create_all()
+
+    return "数据库初始化成功"
+
+
+
 @app.route("/test_db")
 def test_db():
 
