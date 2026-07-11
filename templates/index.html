@@ -130,7 +130,67 @@ required>
 
 
 
+<div class="card">
 
+<h2>🎯 招生专业信息</h2>
+
+
+{% if majors %}
+
+
+{% for major in majors %}
+
+
+<div class="major-card">
+
+
+<h3>
+🎓 {{ major.name }}
+</h3>
+
+
+<p>
+<strong>专业代码：</strong>
+{{ major.code }}
+</p>
+
+
+<p>
+<strong>学习方式：</strong>
+{{ major.study }}
+</p>
+
+
+<p>
+<strong>学制：</strong>
+{{ major.years }} 年
+</p>
+
+
+<p>
+<strong>学费：</strong>
+{{ major.tuition }}
+</p>
+
+
+</div>
+
+
+{% endfor %}
+
+
+{% else %}
+
+
+<p>
+暂无专业数据
+</p>
+
+
+{% endif %}
+
+
+</div>
 
 <div class="card">
 

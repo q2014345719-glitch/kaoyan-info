@@ -5,6 +5,10 @@ db = SQLAlchemy()
 
 
 
+# ======================
+# 学校表
+# ======================
+
 class School(db.Model):
 
     __tablename__ = "schools"
@@ -16,38 +20,53 @@ class School(db.Model):
     )
 
 
+    # 学校名称
     name = db.Column(
         db.String(100),
         nullable=False
     )
 
 
+    # 城市
     city = db.Column(
         db.String(100)
     )
 
 
+    # 学校类型
     school_type = db.Column(
         db.String(50)
     )
 
 
+    # 办学层次
+    level = db.Column(
+        db.String(100)
+    )
+
+
+    # 官网
     website = db.Column(
         db.String(200)
     )
 
 
-
-    # 一个学校对应多个专业
+    # 专业关系
 
     majors = db.relationship(
         "Major",
         backref="school",
-        lazy=True
+        lazy=True,
+        cascade="all, delete"
     )
 
 
 
+
+
+# ======================
+# 专业表
+# ======================
 
 class Major(db.Model):
 
@@ -64,7 +83,9 @@ class Major(db.Model):
 
     school_id = db.Column(
         db.Integer,
-        db.ForeignKey("schools.id")
+        db.ForeignKey(
+            "schools.id"
+        )
     )
 
 
@@ -100,4 +121,25 @@ class Major(db.Model):
 
     tuition = db.Column(
         db.String(100)
+    )
+
+
+    # 招生人数
+
+    plan = db.Column(
+        db.Integer
+    )
+
+
+    # 推免人数
+
+    tuimian = db.Column(
+        db.Integer
+    )
+
+
+    # 初试科目
+
+    subjects = db.Column(
+        db.Text
     )

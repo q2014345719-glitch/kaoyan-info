@@ -47,12 +47,8 @@ def home():
 
 # 搜索学校
 
-@app.route(
-    "/search",
-    methods=["POST"]
-)
+@app.route("/search", methods=["POST"])
 def search():
-
 
     school_name = request.form.get(
         "school",
@@ -60,18 +56,16 @@ def search():
     ).strip()
 
 
-
     # 数据库查询
-
     school = School.query.filter_by(
         name=school_name
     ).first()
 
 
-
     return render_template(
         "index.html",
-        school=school
+        school=school,
+        majors=school.majors if school else []
     )
 
 
